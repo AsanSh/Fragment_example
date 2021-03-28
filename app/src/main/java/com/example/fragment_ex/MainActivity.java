@@ -19,16 +19,16 @@ public class MainActivity extends AppCompatActivity implements IFragment {
     }
 
     @Override
-    public void onSendText(String text) {
-   TextFragment textFragment = (TextFragment) fragmentManager.findFragmentById(R.id.fragmentText);
-   transaction = fragmentManager.beginTransaction();
-   textFragment.showText(text);
-   transaction.commit();
-
-    }
+    public void hideFragment() {
+        TextFragment textFragment = (TextFragment) fragmentManager.findFragmentById(R.id.fragmentText);
+        transaction = fragmentManager.beginTransaction();
+        if(textFragment!=null){
+            transaction.hide(textFragment);
+            transaction.commit();}
+   }
 
     @Override
-    public void onReplace() {
+    public void showFragment() {
         ChangeFragment fragment = new ChangeFragment();
         transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.frame_layout,fragment);

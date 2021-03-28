@@ -1,7 +1,8 @@
 package com.example.fragment_ex;
 
 public interface IFragment {
-    void onSendText(String text);
+    void hideFragment();
 
-    void onReplace();
+    void showFragment();
+
 }

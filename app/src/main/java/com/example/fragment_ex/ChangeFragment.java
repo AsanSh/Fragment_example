@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +23,10 @@ public class ChangeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
 
-    private Button btnSend, btnReplace;
+    private Button btnHide, btnShow;
     private EditText edText;
 
     private IFragment iFragment;
@@ -56,26 +60,24 @@ public class ChangeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_change, container, false);
-        btnReplace = view.findViewById(R.id.btnReplace);
-        btnSend = view.findViewById(R.id.btnSend);
+        btnHide = view.findViewById(R.id.btnHide);
+        btnShow = view.findViewById(R.id.btnShow);
         edText = view.findViewById(R.id.edText);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = edText.getText().toString();
-                MainActivity activity = (MainActivity) getActivity();
-                activity.onSendText(text);
-            }
-        });
+btnHide.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        iFragment.hideFragment();
+    }
+});
 
-        btnReplace.setOnClickListener(new View.OnClickListener() {
+        btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.onReplace();
+                iFragment.showFragment();
             }
         });
         return view;
     }
 }
+
